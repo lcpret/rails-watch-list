@@ -1,0 +1,9 @@
+<h1><%= @list.name %></h1>
+<span><%= "You haven't saved any movies yet!" if @list.movies.empty? %></span>
+<% @list.movies.each do |movie| %>
+      <% bookmark = Bookmark.find_by(list: @list, movie: movie) %>
+      <p><strong><%= movie.title %> <span> <%= movie.rating %> </span></strong></p>
+      <p><small class="text-muted"><%= movie.overview %></small></p>
+      <p></i><small><%= bookmark.comment %></small></p>
+    <% end %>
+<button> <%= link_to "Add a movie", new_list_bookmark_path(@list) %> </button>
